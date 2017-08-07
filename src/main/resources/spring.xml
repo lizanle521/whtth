@@ -23,12 +23,10 @@
     http://www.springframework.org/schema/cache/spring-cache.xsd
     http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
-     
-    <mvc:annotation-driven/>  
-    <!-- 自动装载 @Autowire @Resource @PostConstruct @PreDestroy -->
-    <context:annotation-config />
     
-    <context:component-scan base-package="com.wh.whtth" />
+    <context:component-scan base-package="com.wh.whtth" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:exclude-filter>
+	</context:component-scan>
 	
 	
 	<!-- 加载数据库属性配置文件 -->
@@ -37,6 +35,7 @@
 	<context:property-placeholder location="classpath:properties/img.properties"  ignore-unresolvable="true"/>
 	<!-- 开启任务调度及异步 
 	<task:annotation-driven/>-->
+	<bean id="beanProcessor" class="com.wh.whtth.framework.BeanProcessor"/>
 	 
 	<!-- 数据库连接池  alibaba durid 配置 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">

@@ -2,16 +2,19 @@ package com.wh.whtth.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wh.whtth.util.ReqJsonUtil;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
-
+@Controller
 public class BaseController {
 
-	protected String IMG_PATH = "/whtthimg/";
+	@Value("#{configProperties['imgpath']}")
+	public  String IMG_PATH;
 
 	public static Object getVo(HttpServletRequest req,Class voclass) throws Exception {
 		Object vo = null;
