@@ -13,7 +13,7 @@ import java.io.Writer;
 @Controller
 public class BaseController {
 
-	@Value("#{configProperties['imgpath']}")
+	@Value("${imgpath}")
 	public  String IMG_PATH;
 
 	public static Object getVo(HttpServletRequest req,Class voclass) throws Exception {

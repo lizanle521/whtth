@@ -12,15 +12,5 @@
 	<mvc:default-servlet-handler />
 	<context:component-scan base-package="com.wh.whtth.controller"/>
 	<mvc:annotation-driven/>
-
-	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="locations">
-			<list>
-				<value>classpath:properties/img.properties</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
-		<property name="properties" ref="configProperties" />
-	</bean>
+	<context:property-placeholder location="classpath:properties/img.properties"  ignore-unresolvable="true"/>
 </beans>
