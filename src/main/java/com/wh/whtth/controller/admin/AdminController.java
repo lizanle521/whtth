@@ -43,6 +43,7 @@ public class AdminController extends BaseController{
 			newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
 			File newFile = new File(getRootPath()+IMG_PATH+newFileName);
 			if(!newFile.exists()) {
+				newFile.mkdir();
 				newFile.createNewFile();
 				img.transferTo(newFile);
 			}

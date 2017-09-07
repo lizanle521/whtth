@@ -74,59 +74,6 @@
 		<property name="basePackage" value="com.wh.whtth.idao" />
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
 	</bean>
-	
-	<!-- 配置事务管理器 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource">
-			<ref bean="dataSource" />
-		</property>
-		<property name="globalRollbackOnParticipationFailure" value="false" />
-	</bean> 
-	
-	<!-- <bean id="serviceCheck" class="com.ruibang.util.ServiceTimeLog"/>  -->
-	<!-- 配置事务通知属性
- 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		
-		<tx:attributes>
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="edit*" propagation="REQUIRED" />
-			<tx:method name="remove*" propagation="REQUIRED" />
-			<tx:method name="register*" propagation="REQUIRED" />
-			<tx:method name="new*" propagation="REQUIRED" />
-			<tx:method name="set*" propagation="REQUIRED" />
-			<tx:method name="submit*" propagation="REQUIRED" />
-			<tx:method name="access*" propagation="REQUIRED" />
-
-			<tx:method name="get*"  read-only="true" />
-			<tx:method name="find*" read-only="true" />
-			<tx:method name="*" read-only="true" />
-		</tx:attributes>
-	</tx:advice>
-	 -->
-	<!-- 配置事务切面   
-	execution(* cn.com.pubinfo.service.*.*(..))" 定义在service包里的任意方法
-	execution(* cn.com.pubinfo.service..*.*(..))" 定义在service包和所有子包里的任意类的任意方法
-	
- 	<aop:config>
-		<aop:pointcut id="serviceOperation" expression="execution(* com.ruibang.service..*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
-		<aop:aspect id="serviceTimeLog" ref="serviceCheck">
-			<aop:before method="before" pointcut-ref="serviceOperation" arg-names=""/>
-			<aop:after method="after" pointcut-ref="serviceOperation"/>
-		</aop:aspect>
-	</aop:config>
-  -->
-
-	<!-- 文件上传 -->
-  	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
-     	<property name="maxUploadSize" value="-1" />   
- 	</bean> 
-	
 	<!-- 视图解释器 -->
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="mediaTypes">
@@ -138,19 +85,9 @@
 		</property>
 		<property name="defaultContentType" value="text/html"/>
 	</bean>
-		
-	<cache:annotation-driven/>
-		
-	 <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-		<property name="caches">
-			<set>
-<!-- 				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="adverExtend" />
-				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="adverModel" />
-				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="umap" />
-				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="provinces" />
-				<bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="checkphone" /> -->
-			</set>
-		</property>
-	</bean>
-	
+	<!-- 文件上传 -->
+  	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+     	<property name="maxUploadSize" value="-1" />   
+ 	</bean>
+	<import resource="spring-redis.xml"/>
 </beans>
